@@ -1,0 +1,236 @@
+1. Line Chart
+Purpose: To visualize trends over time.
+Code:
+
+python
+Copy code
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+
+plt.plot(x, y, marker='o')
+plt.title("Simple Line Chart")
+plt.xlabel("X-Axis")
+plt.ylabel("Y-Axis")
+plt.show()
+2. Bar Chart
+Purpose: Compare different categories or groups.
+Code:
+
+python
+Copy code
+categories = ['A', 'B', 'C']
+values = [10, 15, 7]
+
+plt.bar(categories, values, color=['blue', 'green', 'red'])
+plt.title("Bar Chart Example")
+plt.show()
+3. Scatter Plot
+Purpose: Show relationships between two continuous variables.
+Code:
+
+python
+Copy code
+import numpy as np
+
+x = np.random.rand(50)
+y = np.random.rand(50)
+
+plt.scatter(x, y, color='purple')
+plt.title("Scatter Plot Example")
+plt.show()
+4. Pie Chart
+Purpose: Represent the proportion of categories in a whole.
+Code:
+
+python
+Copy code
+labels = ['Apple', 'Banana', 'Cherry', 'Date']
+sizes = [15, 30, 45, 10]
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+plt.title("Pie Chart Example")
+plt.show()
+5. Histogram
+Purpose: Display the frequency distribution of a dataset.
+Code:
+
+python
+Copy code
+data = np.random.randn(1000)
+
+plt.hist(data, bins=30, color='skyblue', edgecolor='black')
+plt.title("Histogram Example")
+plt.show()
+6. Heatmap (Using Seaborn)
+Purpose: Visualize matrix-like data with color encoding.
+Code:
+
+python
+Copy code
+import seaborn as sns
+import numpy as np
+
+data = np.random.rand(5, 5)
+sns.heatmap(data, annot=True, cmap='coolwarm')
+plt.title("Heatmap Example")
+plt.show()
+7. Box Plot (Using Seaborn)
+Purpose: Summarize data distribution with quartiles and outliers.
+Code:
+
+python
+Copy code
+data = np.random.randn(100)
+
+sns.boxplot(data=data)
+plt.title("Box Plot Example")
+plt.show()
+8. Radar Chart
+Purpose: Compare multiple variables on a circular chart.
+Code:
+
+python
+Copy code
+from math import pi
+
+labels = ['A', 'B', 'C', 'D']
+values = [4, 3, 2, 5]
+angles = [n / float(len(labels)) * 2 * pi for n in range(len(labels))]
+values += values[:1]
+angles += angles[:1]
+
+fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+ax.plot(angles, values, linewidth=1, linestyle='solid')
+ax.fill(angles, values, alpha=0.4)
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(labels)
+plt.title("Radar Chart Example")
+plt.show()
+9. Violin Plot (Using Seaborn)
+Purpose: Show the distribution of data across several categories.
+Code:
+
+python
+Copy code
+data = np.random.randn(100)
+sns.violinplot(data=data)
+plt.title("Violin Plot Example")
+plt.show()
+These code snippets demonstrate the essential plots covered in Chapter 2, providing you with a clear understanding of each plot's usage along with sample implementations. Let me know if you need further assistance!
+
+You said:
+do the same with chapter 1 also
+ChatGPT said:
+ChatGPT
+Here’s a concise breakdown of Chapter 1: The Importance of Data Visualization and Data Exploration topics with Python code examples to illustrate key concepts.
+
+1. Data Wrangling with NumPy and Pandas
+Purpose: Prepare raw data for visualization and analysis.
+NumPy is used for numerical operations, and Pandas handles tabular data efficiently.
+Code: Data Wrangling Example with NumPy and Pandas
+
+python
+Copy code
+import numpy as np
+import pandas as pd
+
+# Create a NumPy array and calculate basic statistics
+data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+mean = np.mean(data)
+median = np.median(data)
+variance = np.var(data)
+
+print(f"Mean: {mean}, Median: {median}, Variance: {variance}")
+
+# Load a sample dataset with Pandas
+df = pd.DataFrame({'Name': ['Alice', 'Bob', 'Charlie'], 'Score': [85, 90, 88]})
+print(df.describe())  # Basic statistical summary
+2. Measures of Central Tendency
+Mean: Average value of data.
+Median: Middle value in an ordered dataset.
+Mode: Most frequent value.
+Code: Calculating Mean, Median, Mode
+
+python
+Copy code
+from scipy import stats
+
+data = [1, 2, 2, 3, 4, 4, 4, 5, 6]
+mean = np.mean(data)
+median = np.median(data)
+mode = stats.mode(data)
+
+print(f"Mean: {mean}, Median: {median}, Mode: {mode.mode[0]}")
+3. Measures of Dispersion
+Variance: Spread of data from the mean.
+Standard Deviation: Square root of variance.
+Range: Difference between max and min values.
+Interquartile Range: Difference between the 75th and 25th percentiles.
+Code: Calculating Measures of Dispersion
+
+python
+Copy code
+data = np.array([10, 12, 23, 23, 16, 23, 21, 16])
+variance = np.var(data)
+std_dev = np.std(data)
+range_value = np.ptp(data)  # Peak-to-peak range
+
+print(f"Variance: {variance}, Std Dev: {std_dev}, Range: {range_value}")
+4. Correlation Between Variables
+Correlation describes the relationship between two variables.
+Code: Scatter Plot with Correlation
+
+python
+Copy code
+import matplotlib.pyplot as plt
+
+x = np.random.rand(50)
+y = x + np.random.normal(0, 0.1, 50)  # Add some noise
+
+plt.scatter(x, y)
+plt.title("Scatter Plot with Correlation")
+plt.show()
+
+correlation = np.corrcoef(x, y)[0, 1]
+print(f"Correlation: {correlation}")
+5. Types of Data
+Categorical Data: Non-numeric, such as color or category.
+Numerical Data: Continuous or discrete numeric data.
+Code: Categorical vs. Numerical Data Example
+
+python
+Copy code
+df = pd.DataFrame({'Category': ['A', 'B', 'A', 'C'], 'Value': [10, 20, 15, 10]})
+print("Categorical Data:\n", df['Category'])
+print("Numerical Data:\n", df['Value'].describe())
+6. Summary Statistics
+Summary statistics help communicate large datasets succinctly. This includes metrics like mean, median, variance, and standard deviation.
+Code: Summary Statistics with Pandas
+
+python
+Copy code
+data = {'Math': [85, 92, 88, 76], 'Science': [91, 89, 85, 95]}
+df = pd.DataFrame(data)
+
+print("Summary Statistics:\n", df.describe())
+7. Tools and Libraries for Data Visualization
+This chapter introduces essential libraries such as:
+
+Matplotlib: Basic plotting.
+Seaborn: Statistical visualizations.
+Pandas: Data manipulation.
+NumPy: Numerical operations.
+Code: Line Plot with Matplotlib
+
+python
+Copy code
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.title("Sine Wave")
+plt.xlabel("X")
+plt.ylabel("Sin(X)")
+plt.show()
